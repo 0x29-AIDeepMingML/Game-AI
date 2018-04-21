@@ -46,7 +46,7 @@ class DQN:
         self.actions = tf.placeholder(tf.float32, [None, self.num_actions])
         self.q_target = tf.placeholder(tf.float32, [None])
         self.q_train = tf.reduce_max(tf.multiply(self.train_net.y, self.actions), reduction_indices=1)
-        self.diff = tf.sub(self.q_target, self.q_train)
+        self.diff = tf.subtract(self.q_target, self.q_train)
 
         half = tf.constant(0.5)
         if params.clip_delta > 0:
@@ -132,7 +132,7 @@ class DQN:
     def play(self):
         self.randomRestart()
         self.env.restart()
-        for i in xrange(self.episodes):
+        for i in range(self.episodes):
             terminal = False
             while not terminal:
                 #aca cambie algo
